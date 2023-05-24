@@ -4,6 +4,8 @@ import './GameBoard.css'
 function GameBoard() {
     const [cards, setCards] = React.useState([]);
     const [flippedCards, setFlippedCards] = React.useState([]);
+    const [matchedCards, setMatchedCards] = React.useState([]);
+
 
 
     React.useState(() => {
@@ -20,9 +22,42 @@ function GameBoard() {
     
         
 
-        const handleClick = (id) => {
-            console.log('Clicked card ID:', id); };
-
+        const handleClick = (id, symbol) => {
+            console.log("click!!")
+            const flippedCount = flippedCards.length;
+            if (flippedCount < 2) {
+              // Flip the clicked card
+              const updatedCards = cards.map((card) =>
+                card.id === id ? { ...card, isFlipped: true } : card
+              );
+              setCards(updatedCards);
+        
+              // Update the flipped cards
+              setFlippedCards((prevFlippedCards) => [...prevFlippedCards, { id, symbol }]);
+        
+              // Check for a match if two cards are flipped
+              if (flippedCount === 1) {
+                const [card1, card2] = flippedCards;
+                if (card1.symbol === symbol) {
+                  // Match found!
+                  console.log("Match found")
+                  setMatchedCards((prevMatchedCards) => [...prevMatchedCards, symbol]);
+                  setFlippedCards([]);
+                } else {
+                  // No match, flip the cards back after a delay
+                  console.log("match not found flipping back")
+                  setTimeout(() => {
+                    const updatedCards = cards.map((card) =>
+                      card.id === card1.id || card.id === id ? { ...card, isFlipped: false } : card
+                    );
+                    setCards(updatedCards);
+                    setFlippedCards([]);
+                  }, 1000);
+                }
+              }
+            }
+          };
+        
     return (
         
         <div className="game-board">
@@ -30,12 +65,13 @@ function GameBoard() {
             <div className="grid">
                 {cards.map((card) => (
                     <Card
-                        key={card.id}
-                        symbol={card.symbol}
-                        isFlipped={card.isFlipped}
-                        onClick={() => handleClick(card.id)}
-                    
-                    />
+                    key={card.id}
+                    symbol={card.symbol}
+                    isFlipped={card.isFlipped}
+                    onClick={() => handleClick(card.id, card.symbol)}
+                    flippedCards={flippedCards}
+                    setFlippedCards={setFlippedCards}
+                />           
                 ))}
             </div>
         </div>
