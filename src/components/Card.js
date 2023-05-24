@@ -1,35 +1,12 @@
-import React from 'react';
-import './GameBoard.css';
+import React from "react";
+import "./GameBoard.css";
 
-
-  
-
-function Card({symbol, onClick, flippedCards, setFlippedCards, id}) {
-    const [isFlipped, setIsFlipped] = React.useState(false);
-
-    
-
-    const handleClick = () => {
-        setIsFlipped(!isFlipped);
-    
-        if (!isFlipped) {
-            setFlippedCards((prevFlippedCards) => [...prevFlippedCards, { id, symbol }]);
-        } 
-        else {
-            setFlippedCards((prevFlippedCards) =>
-                prevFlippedCards.filter((card) => card.id !== id)
-            );
-        }
-    };
-    
-    
+function Card({ symbol, onClick, isFlipped }) {
   return (
     <div className="card">
-      <div className={`card-inner ${isFlipped ? 'flipped' : ''}`} onClick={handleClick}>
-        
-        <div className="card-front">
-        </div>
-        <div className="card-back"></div>
+      <div className={`card-inner ${isFlipped ? 'flipped' : ''}`} onClick={onClick}>
+        <div className="card-front"></div>
+        <div className="card-back">{symbol}</div>
       </div>
     </div>
   );
