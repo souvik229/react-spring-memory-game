@@ -6,20 +6,72 @@ function GameBoard() {
   const [cards, setCards] = useState([]);
   const [flippedCards, setFlippedCards] = useState([]);
   const [matchedCards, setMatchedCards] = useState([]);
+  const [initialRender, setInitialRender] = React.useState(true);
+  const [elapsedTime, setElapsedTime] = React.useState(0);
+  const [timerId, setTimerId] = React.useState(null);
   console.log("HEHE");
 
-  useEffect(() => {
-    const cardSymbols = ["A", "B", "C", "D", "E", "F", "G", "H"];
-    const generatedCards = cardSymbols.reduce((cards, symbol) => {
-      const card1 = { id: cards.length + 1, symbol, isFlipped: false };
-      const card2 = { id: cards.length + 2, symbol, isFlipped: false };
-      return [...cards, card1, card2];
-    }, []);
-    // Shuffling cards
-    const shuffledCards = shuffleArray(generatedCards);
-    setCards(shuffledCards);
-  }, []);
+  const resetGame = () => {
+    setCards([]);
+    setFlippedCards([]);
+    setMatchedCards([]);
+    setInitialRender(true);
+    setElapsedTime(0);
+    if (timerId !==null)
+    clearInterval(timerId);
+    setTimerId(null);
+  };
 
+
+
+  useEffect(() => {
+    if (!initialRender) {
+      // Display the alert message when all cards are matched
+      if (matchedCards.length === cards.length/2) {
+        alert('Congratulations! You have matched all the cards in '+elapsedTime+' seconds!');
+        if (timerId !== null) {
+            clearInterval(timerId);
+          }
+          setTimerId(null);
+      }
+
+
+    } 
+    }, [cards, matchedCards, initialRender, timerId]);
+
+    useEffect(() =>{
+    if(initialRender) {
+      // Generate the initial set of cards
+      const cardSymbols = ['A', 'B', 'C', 'D', 'E', 'F', 'G', 'H'];
+      const generatedCards = cardSymbols.reduce((cards, symbol) => {
+        const card1 = { id: cards.length + 1, symbol, isFlipped: false };
+        const card2 = { id: cards.length + 2, symbol, isFlipped: false };
+        return [...cards, card1, card2];
+      }, []);
+
+      // Shuffle the cards
+      const shuffledCards = shuffleArray(generatedCards);
+    //set cards
+      setCards(shuffledCards);
+
+      //time
+      const id = setInterval(() => {
+        setElapsedTime((prevElapsedTime) => prevElapsedTime + 1);
+      }, 1000);
+
+      setTimerId(id);
+      setInitialRender(false);
+    }
+  }, [initialRender]);
+
+
+
+
+
+
+
+  
+  //CLICK FUNCTION
   const handleClick = (id, symbol) => {
     const flippedCount = flippedCards.length;
     const isCardMatched = matchedCards.includes(symbol);
@@ -72,8 +124,11 @@ function GameBoard() {
     return newArray;
   };
 
+  
+  //div return
   return (
     <div className="game-board">
+        <button className = "restart-button"onClick={resetGame}>Restart</button>
       <div className="grid">
         {cards.map((card) => (
           <Card
@@ -83,6 +138,9 @@ function GameBoard() {
             onClick={() => handleClick(card.id, card.symbol)}
           />
         ))}
+      </div>
+      <div className="timer-container">
+      <div className="timer">Elapsed Time: {elapsedTime} seconds</div>
       </div>
     </div>
   );

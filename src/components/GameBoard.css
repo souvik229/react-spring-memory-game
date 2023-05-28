@@ -5,6 +5,7 @@
     height: 100vh;
     border-style: dotted;
     border-color: black;
+    background-color: #65e823;
     margin-left: 20px;
     margin-right: 20px;
   }
@@ -16,8 +17,9 @@
     gap: 10px;
     margin: 20px;
     border: 2px solid #030300;
+    background-color: #cbeb14;
     padding: 10px;
-    height: 600px;
+    height: 700px;
     width: 700px;
   }
   
@@ -74,5 +76,38 @@
   
   .card-inner.flipped {
     transform: rotateY(180deg);
+  }
+  
+  .timer {
+    margin-top: 20px;
+    font-size: 20px;
+  }
+  .timer-container {
+    display: flex;
+    flex-direction: column;
+    align-items: center;
+    height: 50px;
+    width: 250px;
+  }
+  
+  .restart-button {
+    margin-top: 20px;
+    padding: 10px 20px;
+    background-color: #007bff;
+    color: #fff;
+    border: none;
+    border-radius: 5px;
+    font-size: 16px;
+    cursor: pointer;
+    transition: background-color 0.3s ease;
+  }
+  
+  .restart-button:hover {
+    background-color: #0056b3;
+    transform: scale(1.05);
+  }
+  
+  .restart-button:active {
+    background-color: #004387;
   }
   
