@@ -1,4 +1,4 @@
-**#To access the project build go to:**
+** ##To access the project build go to:**
 
 ### `https://souvik229.github.io/react-spring-memory-game`
 
