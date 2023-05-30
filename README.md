@@ -1,6 +1,8 @@
 **To access the project build go to:**
 
-### `https://souvik229.github.io/react-spring-memory-game`[deployed](https://souvik229.github.io/react-spring-memory-game)
+### `https://souvik229.github.io/react-spring-memory-game`
+
+[deployed](https://souvik229.github.io/react-spring-memory-game)
 
 
 # Getting Started with Create React App
