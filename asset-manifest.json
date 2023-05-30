@@ -1,0 +1,15 @@
+{
+  "files": {
+    "main.css": "/react-spring-memory-game/static/css/main.7da795f5.css",
+    "main.js": "/react-spring-memory-game/static/js/main.f1097cdf.js",
+    "static/js/787.298bb8d9.chunk.js": "/react-spring-memory-game/static/js/787.298bb8d9.chunk.js",
+    "index.html": "/react-spring-memory-game/index.html",
+    "main.7da795f5.css.map": "/react-spring-memory-game/static/css/main.7da795f5.css.map",
+    "main.f1097cdf.js.map": "/react-spring-memory-game/static/js/main.f1097cdf.js.map",
+    "787.298bb8d9.chunk.js.map": "/react-spring-memory-game/static/js/787.298bb8d9.chunk.js.map"
+  },
+  "entrypoints": [
+    "static/css/main.7da795f5.css",
+    "static/js/main.f1097cdf.js"
+  ]
+}
