@@ -5,7 +5,10 @@
     height: 100vh;
     border-style: dotted;
     border-color: black;
-    background-color: #65e823;
+    background-color: #9ccc84;
+    background-image: url('https://images.pexels.com/photos/176851/pexels-photo-176851.jpeg?auto=compress&cs=tinysrgb&w=1260&h=750&dpr=2');
+    background-size: cover;
+    background-position: center;
     margin-left: 20px;
     margin-right: 20px;
   }
@@ -17,7 +20,7 @@
     gap: 10px;
     margin: 20px;
     border: 2px solid #030300;
-    background-color: #cbeb14;
+    background-color: rgb(6, 6, 2);
     padding: 10px;
     height: 700px;
     width: 700px;
@@ -81,6 +84,7 @@
   .timer {
     margin-top: 20px;
     font-size: 20px;
+    color: #ffffff;
   }
   .timer-container {
     display: flex;
